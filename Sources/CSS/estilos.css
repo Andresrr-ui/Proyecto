@@ -1,0 +1,79 @@
+
+header 
+{
+    
+    height:100vh;
+    background-size: cover;
+    background-position: center;
+}
+header
+{
+    color:blue;
+}
+.main-nav
+{
+    float: right;
+    list-style: none;
+    margin-top: 30px;
+    display: flex;
+}
+.main-nav li
+{
+  display: inline-block;
+}
+.main-nav li a
+{
+   color: rgb(245, 239, 239);
+   text-decoration: blue;
+   padding: 5px 20px;
+   font-family: "Roboto",sans-serif;
+   font-size: 15px;
+   position: relative; 
+   
+}
+
+.main-nav li.active a
+{
+ border: 1px solid blue;
+
+}
+.main-nav li a:hover
+{
+ border: 1px solid blue;
+}
+
+  form{
+  width: 300px;
+  border: 1px solid #ccc;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+}
+
+h2{
+  text-align: center;
+}
+body{
+  background: url(https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTKW1ip1s-T9tW2R4-X5mD49OTbr9oNg28uJg2Iy-sc4XgDdMli&usqp=CAU) ;
+   background-repeat: no-repeat, repeat;
+   background-size: 1600px;
+}
+input[type="submit"]{
+  margin-bottom: 0;
+  background: #1668c4;
+  color: #fff;
+  border: none;
+}
+input[type="submit"]{
+
+  background: #4A88F4;
+  cursor: pointer;
+  }
+
+input,textarea{
+  margin-bottom: 20px;
+  padding:10px %;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing:border-box;
+  box-sizing: border-box;
+}
