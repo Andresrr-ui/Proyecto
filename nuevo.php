@@ -11,7 +11,6 @@
 	<div class="contenedor-inputs">
 <body>
 	<form action="index.php" name="formulario" method="get">
-
 			<input type="text" id="" name="Nombre de usuario" placeholder="Nombre de usuario" maxlength="30" required ><br>
 			<input type="email" id="Correo" name="Correo" placeholder="Correo" maxlength="70" required ><br>
 			<input type="email" id="Correo" name="Confirmar correo" placeholder="Correo" maxlength="70" required ><br>
@@ -19,7 +18,6 @@
 			<br>
 			<br>
 			<input type="submit" id="btn" name="btn" value="Registrarse">
-
 	</form>
 </body>
-</html>
+</html> 

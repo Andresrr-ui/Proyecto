@@ -9,7 +9,6 @@
             <div class="hero">
 </head>
 <body>
-
   <div class="container">
     <div class="card" align="center">
        
@@ -52,6 +51,5 @@
       </div>
     </div>
   </div>
-
 </body>
-</html>
+</html> 

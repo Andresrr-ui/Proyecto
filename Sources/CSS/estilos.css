@@ -1,7 +1,6 @@
-
 header 
 {
-    
+
     height:100vh;
     background-size: cover;
     background-position: center;
@@ -29,7 +28,7 @@ header
    font-family: "Roboto",sans-serif;
    font-size: 15px;
    position: relative; 
-   
+
 }
 
 .main-nav li.active a
@@ -76,4 +75,4 @@ input,textarea{
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing: border-box;
-}
+} 
