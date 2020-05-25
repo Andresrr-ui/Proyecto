@@ -19,7 +19,7 @@
 </style>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Sistema medico</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -27,19 +27,22 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="inicioadmin.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Crear Administrador<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Agregar habitaciones</a>
+      <li class="nav-item ">
+        <a class="nav-link" href="Administradores/lista.php">Administradores<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Agregar camas</a>
+        <a class="nav-link" href="Habitaciones/lista.php">Habitaciones</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Lista de Pacientes</a>
+        <a class="nav-link" href="Recursos/lista.php">Recursos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Equipos/lista.php">Equipos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="Pacientes/lista.php">Lista de Pacientes</a>
       </li>
     </ul>
     <span class="navbar-text">
@@ -54,10 +57,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6">
-        <button type="button" class="btn btn-primary btn-lg btn-block">Mensajes</button>
+        <a class="btn btn-primary btn-lg btn-block" href="Medicos/lista.php" role="button">Lista de Medicos</a>
     </div>
     <div class="col-md-6">
-        <button type="button" class="btn btn-secondary btn-lg btn-block">Lista de Medicos</button>
+         <a class="btn btn-secondary btn-lg btn-block" href="Mensajes/lista.php" role="button">Mensajes</a>
     </div>
   </div>
 </div>
