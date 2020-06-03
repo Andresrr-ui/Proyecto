@@ -1,4 +1,16 @@
 <?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: index.php');
+        }
+    }
+?>
+<?php
    include_once dirname(__FILE__) . '../config.php';
             $str_datos = "";
              $con=mysqli_connect(HOST_DB,USUARIO_DB,USUARIO_PASS,NOMBRE_DB);

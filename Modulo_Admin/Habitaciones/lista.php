@@ -54,7 +54,7 @@
       </li>
     </ul>
     <span class="navbar-text">
-      Cerrar sesion
+      <a class="btn btn-primary" href="cerrar.php">Cerrar Sesion</a>
     </span>
   </div>
 </nav>

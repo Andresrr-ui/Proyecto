@@ -1,4 +1,16 @@
 <?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: index.php');
+        }
+    }
+?>
+<?php
   include_once '../conexion.php';
 
   if(isset($_GET['CEDULA'])){
@@ -92,7 +104,7 @@
       </li>
     </ul>
     <span class="navbar-text">
-      Cerrar sesion
+      <a class="btn btn-primary" href="cerrar.php">Cerrar Sesion</a>
     </span>
   </div>
 </nav>

@@ -10,7 +10,7 @@
     
     if(isset($_SESSION['rol'])){
         switch($_SESSION['rol']){
-            case 1:
+             case 1:
                     header('location: Modulo_Admin/inicioadmin.php');
                 break;
 
@@ -27,19 +27,18 @@
         $password = $_POST['password'];
 
         $db = new Database();
-        $query = $db->connect()->prepare('SELECT * FROM medico WHERE username = :username AND password = :password');
+        $query = $db->connect()->prepare('SELECT * FROM admin WHERE usuario = :username AND password = :password');
         $query->execute(['username' => $username, 'password' => $password]);
 
         $row = $query->fetch(PDO::FETCH_NUM);
         
         if($row == true){
-            $id= [0];
-            $rol = $row[4];
+            $rol = $row[2];
             
             $_SESSION['cedula'] = $cedula;
             $_SESSION['rol'] = $rol;
             switch($rol){
-                 case 1:
+                case 1:
                     header('location: Modulo_Admin/inicioadmin.php');
                 break;
 
@@ -75,21 +74,22 @@
 <body>
   <div class="form-group">
     <form id="login-form" method="POST">
-        <h2>Iniciar sesión</h2>
+        <h2>Iniciar Admin</h2>
         <p>Nombre de usuario: <br>
         <input type="text" class="form-control" name="username"></p>
         <p>Password: <br>
         <input type="password" class="form-control" name="password"></p>
         <p class="center"><input type="submit" class="btn btn-primary" value="Iniciar Sesión"></p>
     </form>
-<a class="btn btn-secondary" href="registro.php" role="button">Registro</a>
-<a href="admin_login.php">ingresar como administrador</a>
 <br>
+
+<a href="../index.php">Volver a login medico</a>
 </div>
     <?php
             if(isset($errorLogin)){
                 echo $errorLogin;
             }
+
        ?>
 </body>
 </html>

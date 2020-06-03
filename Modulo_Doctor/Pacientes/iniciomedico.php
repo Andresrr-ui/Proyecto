@@ -1,3 +1,14 @@
+<?php
+ session_start();
+  $comparar= $_SESSION['cedula'];
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
+    }else{
+        if($_SESSION['rol'] != 2){
+            header('location: index.php');
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

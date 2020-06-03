@@ -1,5 +1,5 @@
 <?php
-	$database="taller1";
+	$database="web";
 	$user='prueba';
 	$password='prueba123';
 

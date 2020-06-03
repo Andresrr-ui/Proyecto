@@ -1,23 +1,27 @@
+<?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: index.php');
+        }
+    }
+?>
+
 <?php 
   include_once '../conexion.php';
   if(isset($_POST['guardar'])){
-    $cedula=$_POST['cedula'];
-    $nombre=$_POST['nombre'];
-    $apellido=$_POST['apellido'];
-    $correo=$_POST['correo'];
-    $edad=$_POST['edad'];
+    $usuario=$_POST['usuario'];
+    $password=$_POST['password'];
     
-    if(!empty($cedula) && !empty($nombre) && !empty($apellido) && !empty($correo) && !empty($edad) ){
-      if(!filter_var($correo,FILTER_VALIDATE_EMAIL)){
-        echo "<script> alert('Correo no valido');</script>";
-      }else{
-        $cons=$con->prepare('INSERT INTO Personas (Cedula, Nombre, Apellido, Correo, Edad) VALUES(:cedula,:nombre,:apellido,:correo,:edad)');
+    if(!empty($usuario) && !empty($password)){
+        $cons=$con->prepare('INSERT INTO admin (usuario, password) VALUES(:usuario,:password)');
         $cons->execute(array(
-          ':cedula' =>$cedula,
-          ':nombre' =>$nombre,
-          ':apellido' =>$apellido,
-          ':correo' =>$correo,
-          ':edad' =>$edad
+          ':usuario' =>$usuario,
+          ':password' =>$password
         ));
         header('Location: lista.php');
       }
@@ -25,12 +29,11 @@
       echo "<script> alert('Los campos estan vacios');</script>";
     }
 
-  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>index</title>
+  <title>nuevo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -75,25 +78,20 @@
       </li>
     </ul>
     <span class="navbar-text">
-      Cerrar sesion
+      <a class="btn btn-primary" href="cerrar.php">Cerrar Sesion</a>
     </span>
   </div>
 </nav>
 <body>
   <div class="contenedor">
-    <form action="" method="post">
+    <form action="" method="POST">
       <div class="form-group">
-        <input type="text" name="cedula" placeholder="Cedula" class="input__text">
-        <input type="text" name="nombre" placeholder="nombre" class="input__text">
-      </div>
-      <div class="form-group">
-        <input type="text" name="apellido" placeholder="Apellido" class="input__text">
-        <input type="text" name="correo" placeholder="Correo" class="input__text">
-        <input type="text" name="edad" placeholder="Edad" class="input__text">
+        <input type="text" name="usuario" placeholder="usuario" class="input__text">
+        <input type="password" name="password" placeholder="password" class="input__text">
       </div>
       <div class="btn__group">
         <a href="lista.php" class="btn btn-danger">Cancelar</a>
-        <input type="submit" name="guardar" value="Guardar" class="btn btn-primary">
+        <input type="submit" name="guardar" class="btn btn-primary">
       </div>
     </form>
   </div>

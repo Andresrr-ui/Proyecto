@@ -1,4 +1,17 @@
 <?php
+
+    session_start();
+
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
+    }else{
+        if($_SESSION['rol'] != 1){
+            header('location: index.php');
+        }
+    }
+?>
+
+<?php
    include_once dirname(__FILE__) . '../config.php';
             $str_datos = "";
              $con=mysqli_connect(HOST_DB,USUARIO_DB,USUARIO_PASS,NOMBRE_DB);
@@ -54,7 +67,7 @@
       </li>
     </ul>
     <span class="navbar-text">
-      Cerrar sesion
+     <a class="btn btn-primary" href="cerrar.php">Cerrar Sesion</a>
     </span>
   </div>
 </nav>
@@ -63,26 +76,17 @@
   <div class="contenedor">
         <table class="table table-dark">
             <tr class="head">
-                <td>Cedula</td>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Correo</td>
-                <td>Edad</td>
+                <td>Nombre de usuario</td>
                 <td colspan="2">Acción</td>     
             </tr>    
         <?php
-            $sql = "SELECT * from personas";
+            $sql = "SELECT * from admin";
             $resultado = mysqli_query($con,$sql);
             while($fila = mysqli_fetch_array($resultado)) {
          ?>
            <tr>
-           <td><?php echo $fila['CEDULA']?></td>
-           <td><?php echo $fila['NOMBRE']?></td>
-           <td><?php echo $fila['APELLIDO']?></td>
-           <td><?php echo $fila['CORREO']?></td>
-           <td><?php echo $fila['EDAD']?></td>
-           <td><a href="update.php?CEDULA=<?php echo $fila['CEDULA']; ?>"  class="btn__update" >Actualizar</a></td>
-          <td><a href="delete.php?CEDULA=<?php echo $fila['CEDULA']; ?>" class="btn__delete">Eliminar</a></td>    
+           <td><?php echo $fila['usuario']?></td>
+          <td><a href="delete.php?usuario=<?php echo $fila['usuario']; ?>" class="btn__delete">Eliminar</a></td>    
        </tr>
     <?php
    }

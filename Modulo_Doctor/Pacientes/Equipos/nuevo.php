@@ -1,3 +1,14 @@
+<?php
+ session_start();
+  $comparar= $_SESSION['cedula'];
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
+    }else{
+        if($_SESSION['rol'] != 2){
+            header('location: index.php');
+        }
+    }
+?>
 <?php 
   include_once '../conexion.php';
   if(isset($_POST['guardar'])){
@@ -60,7 +71,7 @@
       </li>
     </ul>
     <span class="navbar-text">
-      Cerrar sesion
+      <a class="btn btn-primary" href="cerrar.php">Cerrar Sesion</a>
     </span>
   </div>
 </nav>
