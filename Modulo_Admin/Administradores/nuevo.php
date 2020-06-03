@@ -10,26 +10,6 @@
         }
     }
 ?>
-
-<?php 
-  include_once '../conexion.php';
-  if(isset($_POST['guardar'])){
-    $usuario=$_POST['usuario'];
-    $password=$_POST['password'];
-    
-    if(!empty($usuario) && !empty($password)){
-        $cons=$con->prepare('INSERT INTO admin (usuario, password) VALUES(:usuario,:password)');
-        $cons->execute(array(
-          ':usuario' =>$usuario,
-          ':password' =>$password
-        ));
-        header('Location: lista.php');
-      }
-    }else{
-      echo "<script> alert('Los campos estan vacios');</script>";
-    }
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,14 +64,18 @@
 </nav>
 <body>
   <div class="contenedor">
-    <form action="" method="POST">
+    <form action="insertar.php" method="POST">
       <div class="form-group">
-        <input type="text" name="usuario" placeholder="usuario" class="input__text">
-        <input type="password" name="password" placeholder="password" class="input__text">
+        <label>Usuario</label>
+        <input type="text" name="usuario" class="input__text">
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" class="input__text">
+        <input type="hidden" name="rol" value="1">
       </div>
       <div class="btn__group">
         <a href="lista.php" class="btn btn-danger">Cancelar</a>
-        <input type="submit" name="guardar" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary"></button>
       </div>
     </form>
   </div>

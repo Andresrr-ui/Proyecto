@@ -86,7 +86,7 @@
          ?>
            <tr>
            <td><?php echo $fila['usuario']?></td>
-          <td><a href="delete.php?usuario=<?php echo $fila['usuario']; ?>" class="btn__delete">Eliminar</a></td>    
+          <td><a href="delete.php?usuario=<?php echo $fila['usuario']; ?>" class="btn-delete">Eliminar</a></td>    
        </tr>
     <?php
    }

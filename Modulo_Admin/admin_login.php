@@ -1,5 +1,5 @@
 <?php
-    include_once 'database.php';
+    include_once '../database.php';
     
     session_start();
 
@@ -11,11 +11,11 @@
     if(isset($_SESSION['rol'])){
         switch($_SESSION['rol']){
              case 1:
-                    header('location: Modulo_Admin/inicioadmin.php');
+                    header('location: inicioadmin.php');
                 break;
 
                 case 2:
-                header('location: Modulo_Doctor/iniciomedico.php');
+                header('location: iniciomedico.php');
                 break;
 
                 default:
@@ -23,27 +23,34 @@
     }
 
     if(isset($_POST['username']) && isset($_POST['password'])){
+        $contador=0;
         $username = $_POST['username'];
         $password = $_POST['password'];
 
         $db = new Database();
-        $query = $db->connect()->prepare('SELECT * FROM admin WHERE usuario = :username AND password = :password');
-        $query->execute(['username' => $username, 'password' => $password]);
+        $query = $db->connect()->prepare('SELECT * FROM admin WHERE usuario = :username');
+        $query->execute(['username' => $username]);
 
         $row = $query->fetch(PDO::FETCH_NUM);
         
-        if($row == true){
+        if(password_verify($password, $row[1])){
+            $contador=200;
+        } else {
+            echo "Revise contraseña";
+        }
+
+        if($row == true && $contador=200){
             $rol = $row[2];
             
             $_SESSION['cedula'] = $cedula;
             $_SESSION['rol'] = $rol;
             switch($rol){
                 case 1:
-                    header('location: Modulo_Admin/inicioadmin.php');
+                    header('location: inicioadmin.php');
                 break;
 
                 case 2:
-                header('location: Modulo_Doctor/iniciomedico.php');
+                header('location: iniciomedico.php');
                 break;
 
                 default:
@@ -82,8 +89,7 @@
         <p class="center"><input type="submit" class="btn btn-primary" value="Iniciar Sesión"></p>
     </form>
 <br>
-
-<a href="../index.php">Volver a login medico</a>
+<a href="index.php">Volver a login medico</a>
 </div>
     <?php
             if(isset($errorLogin)){
