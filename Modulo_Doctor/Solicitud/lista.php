@@ -1,11 +1,9 @@
 <?php
-
-    session_start();
-
+ session_start();
     if(!isset($_SESSION['rol'])){
         header('location: index.php');
     }else{
-        if($_SESSION['rol'] != 1){
+        if($_SESSION['rol'] != 2){
             header('location: index.php');
         }
     }
@@ -39,7 +37,7 @@
 </style>
 
 <body>
- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Sistema medico</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -47,22 +45,7 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="../inicioadmin.php">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../Administradores/lista.php">Administradores<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../Habitaciones/lista.php">Habitaciones</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../Recursos/lista.php">Recursos</a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="../Equipos/lista.php">Equipos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../Pacientes/lista.php">Lista de Pacientes</a>
+        <a class="nav-link" href="../iniciomedico.php">Home<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <span class="navbar-text">
@@ -75,31 +58,31 @@
   <div class="contenedor">
         <table class="table table-dark">
             <tr class="head">
-                <td>Id</td>
+                <td>id</td>
                 <td>Nombre</td>
-                <td>Cantidad</td>
+                <td>Apellido</td>
+                <td>Correo</td>
+                <td>Edad</td>
                 <td colspan="2">Acción</td>     
             </tr>    
         <?php
-            $sql = 'SELECT * from equipos_medicos';
+            $sql = "SELECT * from peticion";
             $resultado = mysqli_query($con,$sql);
-
-
-
-            while ($fila = mysqli_fetch_array($resultado)) {
+            while($fila = mysqli_fetch_array($resultado)) {
          ?>
            <tr>
            <td><?php echo $fila['id']?></td>
-           <td><?php echo $fila['nombre']?></td>
-           <td><?php echo $fila['cantidad']?></td>
-           <td><a href="update.php?id=<?php echo $fila['id']; ?>"  class="btn-update" >Actualizar</a></td>
-          <td><a href="delete.php?id=<?php echo $fila['id']; ?>" class="btn-delete">Eliminar</a></td>    
+           <td><?php echo $fila['doctor']?></td>
+           <td><?php echo $fila['paciente']?></td>
+           <td><?php echo $fila['descripcion']?></td>
+           <td><?php echo $fila['equipo']?></td>
+          <td><a href="delete.php?id=<?php echo $fila['id']; ?>" class="btn__delete">Eliminar</a></td>    
        </tr>
     <?php
    }
     ?>
         </table>  
-<a class="btn btn-primary" href="nuevo.php" role="button">Agregar Equipo</a>
+<a class="btn btn-primary" href="nuevo.php" role="button">Agregar Solicitud</a>
         </div>         
     </body>
 </html>

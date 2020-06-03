@@ -1,54 +1,25 @@
 <?php
-  include_once '../conexion.php';
 
-  if(isset($_GET['CEDULA'])){
-    $CEDULA=(int) $_GET['CEDULA'];
+    session_start();
 
-    $buscar_CEDULA=$con->prepare('SELECT * FROM personas WHERE CEDULA=:CEDULA LIMIT 1');
-    $buscar_CEDULA->execute(array(
-      ':CEDULA'=>$CEDULA
-    ));
-    $resultado=$buscar_CEDULA->fetch();
-  }else{
-    header('Location: index.php');
-  }
-
-
-  if(isset($_POST['guardar'])){
-    $nombre=$_POST['nombre'];
-    $apellido=$_POST['apellido'];
-    $correo=$_POST['correo'];
-    $edad=$_POST['edad'];
-
-    if(!empty($nombre) && !empty($apellido) && !empty($correo) && !empty($edad) ){
-      if(!filter_var($correo,FILTER_VALIDATE_EMAIL)){
-        echo "<script> alert('Correo no valido');</script>";
-      }else{
-        $consulta_update=$con->prepare(' UPDATE personas SET  
-          nombre=:nombre,
-          apellido=:apellido,
-          correo=:correo,
-          edad=:edad
-          WHERE CEDULA=:CEDULA;'
-        );
-        $consulta_update->execute(array(
-          ':nombre' =>$nombre,
-          ':apellido' =>$apellido,
-          ':correo' =>$correo,
-          ':edad' =>$edad
-        ));
-        header('Location: lista.php');
-      }
+    if(!isset($_SESSION['rol'])){
+        header('location: index.php');
     }else{
-      echo "<script> alert('Los campos estan vacios');</script>";
+        if($_SESSION['rol'] != 2){
+            header('location: index.php');
+        }
     }
-  }
 
+
+    require 'conexion.php';
+
+    $query ="SELECT id,username from medico";
+    $resultado = $mysqli->query($query); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>index</title>
+  <title>nuevo</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
@@ -65,6 +36,7 @@
     
 </style>
 
+<body>
  <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Sistema medico</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,10 +47,10 @@
       <li class="nav-item">
         <a class="nav-link" href="../inicioadmin.php">Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="../Administradores/lista.php">Administradores<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="../Habitaciones/lista.php">Habitaciones</a>
       </li>
       <li class="nav-item">
@@ -96,24 +68,33 @@
     </span>
   </div>
 </nav>
+<body>
   <div class="contenedor">
-    <form action="" method="post">
+    <form action="insertar.php" method="POST">
       <div class="form-group">
-        <label>Nombre</label>
-        <input type="text" name="nombre" value="<?php if($resultado) echo $resultado['NOMBRE']; ?>" class="input__text">
-        <label>Apellido</label>
-        <input type="text" name="apellido" value="<?php if($resultado) echo $resultado['APELLIDO']; ?>" class="input__text">
-      </div>
-      <div class="form-group">
-        <label>Correo</label>
-        <input type="text" name="correo" value="<?php if($resultado) echo $resultado['CORREO']; ?>" class="input__text">
-        <label>Edad</label>
-        <input type="text" name="edad" value="<?php if($resultado) echo $resultado['EDAD']; ?>" class="input__text">
+        <label>id</label>
+        <input type="hidden" name="id" class="input__text">
+        <label>doctor</label>
+        <select id="doctores" name="doctores">
+          <option value="0">doctor</option>
+          <?php while($row = $resultado->fetch_assoc()) {?>
+            <option value="<?php echo $row['id']; ?>"><?php echo $row['username'];?></option>
+         <?php }?>
+        </select>
+        <label>paciente</label>
+        <label>descripcion</label>
+        <label>equipo</label>
+        <input type="text" name="usuario" class="input__text">
+        <br>
+        <label>Password</label>
+        <input type="password" name="password" class="input__text">
+        <input type="hidden" name="rol" value="1">
       </div>
       <div class="btn__group">
-        <a href="index.php" class="btn btn-danger">Cancelar</a>
-        <input type="submit" name="guardar" value="Guardar" class="btn btn-primary">
+        <a href="lista.php" class="btn btn-danger">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Crear</button>
       </div>
     </form>
   </div>
 </body>
+</html>

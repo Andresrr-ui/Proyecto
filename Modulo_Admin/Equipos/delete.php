@@ -12,11 +12,11 @@
 ?>
 <?php 
 include_once '../conexion.php';
-  if(isset($_GET['CEDULA'])){
-    $CEDULA=(int) $_GET['CEDULA'];
-    $delete=$con->prepare('DELETE FROM Personas WHERE CEDULA=:CEDULA');
+  if(isset($_GET['id'])){
+    $id=(int) $_GET['id'];
+    $delete=$con->prepare('DELETE FROM equipos_medicos WHERE id=:id');
     $delete->execute(array(
-      ':CEDULA'=>$CEDULA
+      ':id'=>$id
     ));
     header('Location: lista.php');
   }else{

@@ -56,7 +56,7 @@
         <a class="btn btn-primary btn-lg btn-block" href="Pacientes/lista.php" role="button">Lista de Pacientes</a>
     </div>
     <div class="col-md-6">
-         <a class="btn btn-secondary btn-lg btn-block" href="Mensajes/formulario.php" role="button">Solicitud de equipo</a>
+         <a class="btn btn-secondary btn-lg btn-block" href="Solicitud/lista.php" role="button">Solicitud de equipo</a>
     </div>
   </div>
 </div>

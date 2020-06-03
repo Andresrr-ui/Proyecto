@@ -75,7 +75,7 @@
       </div>
       <div class="btn__group">
         <a href="lista.php" class="btn btn-danger">Cancelar</a>
-        <button type="submit" class="btn btn-primary"></button>
+        <button type="submit" class="btn btn-primary">Crear</button>
       </div>
     </form>
   </div>

@@ -63,25 +63,19 @@
   <div class="contenedor">
         <table class="table table-dark">
             <tr class="head">
-                <td>Cedula</td>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Correo</td>
-                <td>Edad</td>
+                <td>Numero de habitacion</td>
+                <td>Camas</td>
                 <td colspan="2">Acción</td>     
             </tr>    
         <?php
-            $sql = "SELECT * from personas";
+            $sql = "SELECT * from habitacion";
             $resultado = mysqli_query($con,$sql);
             while($fila = mysqli_fetch_array($resultado)) {
          ?>
            <tr>
-           <td><?php echo $fila['CEDULA']?></td>
-           <td><?php echo $fila['NOMBRE']?></td>
-           <td><?php echo $fila['APELLIDO']?></td>
-           <td><?php echo $fila['CORREO']?></td>
-           <td><?php echo $fila['EDAD']?></td>
-           <td><a href="Camas/lista.php"  class="btn-update" >Editar camas</a></td>   
+           <td><?php echo $fila['codigo']?></td>
+           <td><?php echo $fila['numero_cama']?></td>
+          <td><a href="Camas/lista.php?codigo=<?php echo $fila['codigo']; ?>"  class="btn-update" >Editar camas</a></td>
        </tr>
     <?php
    }

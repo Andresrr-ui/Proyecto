@@ -75,26 +75,32 @@
   <div class="contenedor">
         <table class="table table-dark">
             <tr class="head">
-                <td>Cedula</td>
-                <td>Nombre</td>
-                <td>Apellido</td>
-                <td>Correo</td>
-                <td>Edad</td>
+                <td>Numero</td>
+                <td>Habitacion</td>
+                <td>Estado</td>
                 <td colspan="2">Acción</td>     
             </tr>    
         <?php
-            $sql = "SELECT * from personas";
+            $sql = "SELECT * from camas";
             $resultado = mysqli_query($con,$sql);
             while($fila = mysqli_fetch_array($resultado)) {
          ?>
            <tr>
-           <td><?php echo $fila['CEDULA']?></td>
-           <td><?php echo $fila['NOMBRE']?></td>
-           <td><?php echo $fila['APELLIDO']?></td>
-           <td><?php echo $fila['CORREO']?></td>
-           <td><?php echo $fila['EDAD']?></td>
-           <td><a href="update.php?CEDULA=<?php echo $fila['CEDULA']; ?>"  class="btn__update" >Actualizar</a></td>
-          <td><a href="delete.php?CEDULA=<?php echo $fila['CEDULA']; ?>" class="btn__delete">Eliminar</a></td>    
+           <td><?php echo $fila['numero']?></td>
+           <td><?php echo $fila['habitacion']?></td>
+           <td> 
+            <?php
+            if ($fila['estado']==1){
+              $disponible = 'checked';
+              $disponible1 = 'unchecked';
+            } else {
+              $disponible = 'unchecked';
+              $disponible1 = 'checked';
+            }
+            ?>
+            <input type="radio" name="estado" value="1" <?php'$estado'?> >Disponible<br>
+            <input type="radio" name="estado" value="0" <?php'$estado1'?> >No disponible<br>
+          </td>   
        </tr>
     <?php
    }
